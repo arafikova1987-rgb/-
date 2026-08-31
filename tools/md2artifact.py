@@ -132,8 +132,13 @@ def scenario_fields(p):
         if key == 'Раскадровка':
             shots = []
             for it in items:
-                t, _, txt = it.partition('|')
-                shots.append(f'<li><span class="t">{esc(t.strip())}</span><span>{inline(txt.strip())}</span></li>')
+                parts = [x.strip() for x in it.split('|')]
+                t = parts[0]
+                mode = parts[1] if len(parts) > 2 else ''
+                txt = parts[-1] if len(parts) > 1 else ''
+                cls = {'синхрон': 'sync', 'закадр': 'vo', 'без слов': 'mute', 'титр': 'card'}.get(mode.lower(), 'mute')
+                m = f'<span class="mode {cls}">{esc(mode)}</span>' if mode else ''
+                shots.append(f'<li><span class="t">{esc(t)}</span>{m}<span class="what">{inline(txt)}</span></li>')
             fields.append(('shots', label, '<ol class="shots">' + ''.join(shots) + '</ol>')); continue
         if key == 'Текст на экран':
             chips = ''.join(f'<span class="chip">{esc(c.strip())}</span>' for c in rest.split(' / '))

@@ -248,5 +248,17 @@ code{font-family:var(--mono);font-size:13.5px;background:var(--card-2);border:1p
 nav.toc a{white-space:normal}
 h1 strong{color:var(--mark);font-weight:700}
 .stand strong{font-weight:600}
+
+.shots li{align-items:flex-start}
+.shots .what{flex:1}
+.mode{
+  flex:0 0 78px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  padding-top:3px
+}
+.mode.sync{color:var(--mark)}
+.mode.vo{color:var(--chalk)}
+.mode.mute{color:var(--ink-3)}
+.mode.card{color:var(--good)}
+@media(max-width:520px){.mode{flex-basis:64px}}
 </style>
 
