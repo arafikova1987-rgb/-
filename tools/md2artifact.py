@@ -179,6 +179,40 @@ def parse_fence(p):
                 f'<div><h3>{inline(name)}</h3><p class="sc-meta">{esc(meta)}</p></div>'
                 f'<span class="cover"><i>Обложка</i>{esc(cover)}</span></div>'
                 f'<div class="sc-body">{inner}</div></article>')
+    if kind == 'take':
+        num, tm, plan, mode = (parts + ['', '', '', ''])[:4]
+        rows = []
+        while not p.eof() and p.peek().strip() != ':::':
+            line = p.next().strip()
+            if not line:
+                continue
+            m = re.match(r'\*\*(.+?):\*\*\s*(.*)', line)
+            if not m:
+                rows.append(('', line)); continue
+            rows.append((m.group(1), m.group(2)))
+        p.next()
+        cls = {'синхрон': 'sync', 'закадр': 'vo', 'без слов': 'mute', 'титр': 'card'}.get(mode.lower(), 'mute')
+        head = (f'<div class="take-h"><span class="take-n">Кадр {esc(num)}</span>'
+                f'<span class="take-t">{esc(tm)}</span><span class="take-p">{esc(plan)}</span>'
+                + (f'<span class="mode {cls}">{esc(mode)}</span>' if mode else '') + '</div>')
+        body = []
+        for label, val in rows:
+            speech = label.startswith(('Говорит', 'Закадр', 'Реплика', 'Отвечает', 'Читает'))
+            rc = 'take-r speech' if speech else 'take-r'
+            body.append(f'<div class="{rc}"><span class="take-l">{esc(label)}</span>'
+                        f'<span class="take-v">{inline(val)}</span></div>')
+        return f'<div class="take">{head}{"".join(body)}</div>'
+    if kind == 'spec':
+        cells = []
+        while not p.eof() and p.peek().strip() != ':::':
+            line = p.next().strip()
+            if not line:
+                continue
+            a, _, b = line.partition('|')
+            cells.append(f'<div class="spec-i"><span class="spec-l">{esc(a.strip())}</span>'
+                         f'<span class="spec-v">{inline(b.strip())}</span></div>')
+        p.next()
+        return '<div class="spec">' + ''.join(cells) + '</div>'
     if kind == 'stats':
         cards = []
         while not p.eof() and p.peek().strip() != ':::':
