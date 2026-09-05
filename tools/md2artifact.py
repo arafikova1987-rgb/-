@@ -192,8 +192,13 @@ def parse_fence(p):
             rows.append((m.group(1), m.group(2)))
         p.next()
         cls = {'синхрон': 'sync', 'закадр': 'vo', 'без слов': 'mute', 'титр': 'card'}.get(mode.lower(), 'mute')
-        head = (f'<div class="take-h"><span class="take-n">Кадр {esc(num)}</span>'
-                f'<span class="take-t">{esc(tm)}</span><span class="take-p">{esc(plan)}</span>'
+        if tm.startswith('Слайд'):
+            label, tm = tm, ''
+        else:
+            label = f'Кадр {num}'
+        head = (f'<div class="take-h"><span class="take-n">{esc(label)}</span>'
+                + (f'<span class="take-t">{esc(tm)}</span>' if tm else '')
+                + f'<span class="take-p">{esc(plan)}</span>'
                 + (f'<span class="mode {cls}">{esc(mode)}</span>' if mode else '') + '</div>')
         body = []
         for label, val in rows:
