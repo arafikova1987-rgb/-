@@ -1,0 +1,544 @@
+<meta charset="utf-8">
+<title>Сценарии октября</title>
+<style>
+@page { size: A4; margin: 16mm 14mm 18mm; }
+* { box-sizing: border-box; }
+body{
+  margin:0; font-family:"DejaVu Sans", sans-serif;
+  font-size:10.2pt; line-height:1.45; color:#16181A; background:#fff;
+}
+h1,h2,h3,h4{ margin:0; }
+.mono{ font-family:"DejaVu Sans Mono", monospace; }
+
+/* ---------- cover ---------- */
+.cover{ page-break-after:always; padding-top:42mm; }
+.cover .kicker{ font-family:"DejaVu Sans Mono",monospace; font-size:8pt; letter-spacing:.22em; text-transform:uppercase; color:#B03A22; margin-bottom:9mm; }
+.cover h1{ font-size:34pt; line-height:1.03; letter-spacing:-.5pt; font-weight:700; }
+.cover h1 em{ font-style:normal; color:#B03A22; }
+.cover .sub{ margin-top:7mm; font-size:11.5pt; color:#43484C; max-width:120mm; }
+.cover .meta{ margin-top:16mm; border-top:1.2pt solid #16181A; padding-top:4mm; display:flex; gap:10mm; flex-wrap:wrap; font-family:"DejaVu Sans Mono",monospace; font-size:8pt; }
+.cover .meta b{ display:block; color:#7A8086; font-weight:normal; letter-spacing:.12em; text-transform:uppercase; font-size:7pt; margin-bottom:1mm; }
+.cover .toc{ margin-top:14mm; font-size:9.5pt; }
+.cover .toc div{ display:flex; justify-content:space-between; border-bottom:.4pt dotted #B9BEC2; padding:2mm 0; }
+.cover .toc span:last-child{ font-family:"DejaVu Sans Mono",monospace; color:#7A8086; font-size:8pt; }
+
+/* ---------- section heads ---------- */
+.sec{ page-break-before:always; }
+.sec-head{ border-bottom:1.6pt solid #16181A; padding-bottom:2.5mm; margin-bottom:6mm; display:flex; align-items:baseline; gap:5mm; }
+.sec-head .n{ font-family:"DejaVu Sans Mono",monospace; font-size:8.5pt; color:#B03A22; font-weight:bold; }
+.sec-head h2{ font-size:16pt; letter-spacing:-.2pt; }
+.lead{ font-size:10.5pt; color:#43484C; max-width:165mm; margin-bottom:6mm; }
+
+/* ---------- status table ---------- */
+table{ border-collapse:collapse; width:100%; font-size:9.3pt; }
+th,td{ text-align:left; padding:2.2mm 3mm; border-bottom:.4pt solid #D5D8DA; vertical-align:top; }
+thead th{ font-family:"DejaVu Sans Mono",monospace; font-size:7.2pt; letter-spacing:.11em; text-transform:uppercase; color:#7A8086; background:#F1F2F3; border-bottom:1pt solid #16181A; }
+td.num{ font-family:"DejaVu Sans Mono",monospace; white-space:nowrap; width:14mm; }
+.tag-ok{ font-family:"DejaVu Sans Mono",monospace; font-size:7.5pt; color:#1F6B47; white-space:nowrap; }
+.tag-no{ font-family:"DejaVu Sans Mono",monospace; font-size:7.5pt; color:#B03A22; white-space:nowrap; }
+.tag-ev{ font-family:"DejaVu Sans Mono",monospace; font-size:7.5pt; color:#7A8086; white-space:nowrap; }
+
+/* ---------- scenario card ---------- */
+.card{ page-break-inside:avoid; border:.8pt solid #A8AEB2; margin-bottom:6mm; }
+.card.big{ page-break-inside:auto; }
+.chead{ background:#F1F2F3; border-bottom:.8pt solid #A8AEB2; padding:2.5mm 4mm; display:flex; align-items:baseline; gap:4mm; flex-wrap:wrap; }
+.chead .id{ font-family:"DejaVu Sans Mono",monospace; font-weight:bold; font-size:11pt; color:#B03A22; }
+.chead .ttl{ font-size:12pt; font-weight:700; flex:1 1 90mm; letter-spacing:-.1pt; }
+.chead .lab{ font-family:"DejaVu Sans Mono",monospace; font-size:7pt; letter-spacing:.08em; text-transform:uppercase; color:#5A6065; border:.5pt solid #A8AEB2; padding:.8mm 2mm; white-space:nowrap; }
+.cbody{ padding:4mm; }
+
+.hook{ background:#FBF3E4; border-left:2.2pt solid #B03A22; padding:3mm 4mm; margin-bottom:3.5mm; }
+.hook .k{ font-family:"DejaVu Sans Mono",monospace; font-size:7pt; letter-spacing:.12em; text-transform:uppercase; color:#B03A22; display:block; margin-bottom:1.5mm; }
+.hook q{ font-size:12pt; font-weight:700; line-height:1.28; quotes:"\00AB" "\00BB"; display:block; }
+
+.scr{ border:.5pt dashed #A8AEB2; padding:2.2mm 3mm; margin-bottom:3.5mm; font-family:"DejaVu Sans Mono",monospace; font-size:8.6pt; line-height:1.4; }
+.scr b{ color:#7A8086; font-weight:normal; letter-spacing:.11em; text-transform:uppercase; font-size:6.8pt; display:block; margin-bottom:1mm; }
+
+.beats{ border-top:.5pt solid #D5D8DA; margin-bottom:3.5mm; }
+.b{ display:flex; gap:3mm; border-bottom:.4pt solid #D5D8DA; padding:2mm 0; page-break-inside:avoid; }
+.b .t{ font-family:"DejaVu Sans Mono",monospace; font-size:8pt; color:#1F6B47; width:15mm; flex:none; padding-top:.4mm; }
+.b .a{ flex:1; }
+.b .do{ display:block; font-size:8.6pt; color:#6E7479; margin-bottom:1mm; }
+.b .do:before{ content:"В кадре: "; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; letter-spacing:.06em; text-transform:uppercase; }
+.b .say{ display:block; font-size:9.8pt; border-left:1.2pt solid #C9CDD0; padding-left:2.5mm; }
+
+.cap{ border:.8pt solid #1F6B47; page-break-inside:avoid; }
+.cap .k{ background:#1F6B47; color:#fff; font-family:"DejaVu Sans Mono",monospace; font-size:6.8pt; letter-spacing:.12em; text-transform:uppercase; padding:1.2mm 3mm; }
+.cap .txt{ padding:3mm; font-size:9.6pt; line-height:1.5; white-space:pre-line; }
+
+.why{ background:#F4F5F6; border:.5pt dashed #A8AEB2; padding:2.5mm 3.5mm; margin-top:3.5mm; font-size:8.8pt; color:#43484C; }
+.why .k{ font-family:"DejaVu Sans Mono",monospace; font-size:6.8pt; letter-spacing:.11em; text-transform:uppercase; color:#7A8086; display:block; margin-bottom:1.2mm; }
+.why p{ margin:0; } .why p+p{ margin-top:1.8mm; }
+
+.note{ background:#F4F5F6; border-left:2pt solid #B03A22; padding:3mm 4mm; margin:5mm 0; font-size:9.4pt; color:#43484C; }
+.note .k{ font-family:"DejaVu Sans Mono",monospace; font-size:7pt; letter-spacing:.11em; text-transform:uppercase; color:#B03A22; display:block; margin-bottom:1.5mm; }
+.note p{ margin:0; } .note p+p{ margin-top:2mm; }
+.note.g{ border-left-color:#1F6B47; } .note.g .k{ color:#1F6B47; }
+
+.mech{ display:flex; flex-wrap:wrap; gap:2mm; margin-bottom:5mm; }
+.mech div{ border:.5pt solid #A8AEB2; padding:1.5mm 2.5mm; font-size:8.4pt; }
+.mech div b{ font-family:"DejaVu Sans Mono",monospace; color:#B03A22; font-size:7.5pt; }
+
+ol.chk{ margin:0; padding-left:6mm; font-size:9.6pt; }
+ol.chk li{ margin-bottom:1.6mm; }
+
+.foot{ margin-top:8mm; border-top:.6pt solid #A8AEB2; padding-top:2.5mm; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; letter-spacing:.06em; color:#7A8086; text-transform:uppercase; }
+</style>
+
+<div class="cover">
+  <div class="kicker">Личный блог · @alenka_rafaelka</div>
+  <h1>Сценарии<br><em>октября</em></h1>
+  <p class="sub">Статус сентябрьской съёмки, новый ролик про поставку и четырнадцать сценариев на хуках из гайда «100 хуков для Reels».</p>
+  <div class="meta">
+    <div><b>Дата</b>23.09.2026</div>
+    <div><b>Новых сценариев</b>15</div>
+    <div><b>Разговорных</b>8</div>
+    <div><b>Фоновых под музыку</b>6</div>
+    <div><b>Источник хуков</b>dasha_cher</div>
+  </div>
+  <div class="toc">
+    <div><span>01 · Что снято и что осталось</span><span>стр. 2</span></div>
+    <div><span>02 · Поставка новинок: вскрываю мешок</span><span>стр. 4</span></div>
+    <div><span>03 · Разговорные сценарии Р1–Р8</span><span>стр. 6</span></div>
+    <div><span>04 · Фоновые под музыку Ф1–Ф6</span><span>стр. 15</span></div>
+    <div><span>05 · Шпаргалка: механики и чек-лист</span><span>стр. 21</span></div>
+  </div>
+</div>
+
+<!-- ======================= 01 ======================= -->
+<div class="sec">
+  <div class="sec-head"><span class="n">01</span><h2>Что снято и что осталось</h2></div>
+  <p class="lead">По вашим словам снята большая часть сентябрьского плана, кроме образов за 15 тысяч. Ниже сверка, чтобы ничего не потерялось при переходе в октябрь.</p>
+
+  <table>
+    <thead><tr><th>№</th><th>Ролик</th><th>Статус</th></tr></thead>
+    <tbody>
+      <tr><td class="num">01</td><td>Не хочу возвращаться. И, наверное, вернусь</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">02</td><td>Одна вещь, три образа</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">03</td><td>Восемь миллионов</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">04</td><td>Коллекция на руках, канала нет</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">05</td><td><b>Капсула на 15 тысяч</b></td><td class="tag-no">не снято</td></tr>
+      <tr><td class="num">06</td><td>Кризис показал, кто в команде настоящий</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">07</td><td>Переезд отменяется. Будет перенос</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">08</td><td>Сто двадцать метров через коридор</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">09</td><td>Не люблю наставников</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">10</td><td>Впервые не знаю, куда идти</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">11</td><td>Режу расходы и нанимаю двоих</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">12</td><td>Новость отрасли и моя цифра</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">13</td><td>Что я ношу сама из своей коллекции</td><td class="tag-ok">снято</td></tr>
+      <tr><td class="num">Е1</td><td>Открываю ответ Wildberries</td><td class="tag-ev">по событию</td></tr>
+      <tr><td class="num">Е2</td><td>Снова вожу фурнитуру сама</td><td class="tag-ev">по событию</td></tr>
+      <tr><td class="num">Е3</td><td>Отсюда начинается платье (рынок тканей)</td><td class="tag-ev">по событию</td></tr>
+      <tr><td class="num">Е4</td><td>Делегировала и перестала понимать</td><td class="tag-ev">по событию</td></tr>
+      <tr><td class="num">Е5</td><td>Первая примерка. Пойдёт или нет</td><td class="tag-ev">по событию</td></tr>
+      <tr><td class="num">Е6</td><td>Ткань ехала 90 дней вместо 30</td><td class="tag-ev">по событию</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <span class="k">Про капсулу на 15 тысяч</span>
+    <p>Ролик остаётся в плане, его никто не отменял. Но если он не снялся за месяц, причина обычно не в занятости, а в том, что формат неудобный: нужно собрать пять вещей, свести бюджет, разложить, отснять по позициям.</p>
+    <p>Если так, скажите — переделаю его под то, что снимается за пятнадцать минут. Например, не пять вещей, а одна: «что можно купить на три тысячи и носить всю осень». Тот же смысл, вчетверо меньше подготовки.</p>
+  </div>
+
+  <div class="note g">
+    <span class="k">Что дальше по перекосу</span>
+    <p>В сентябре товарных роликов было два вместо четырёх. Октябрьский набор ниже это выравнивает: из пятнадцати новых сценариев шесть так или иначе показывают вещи, но ни один не требует моделей, студии и постановки.</p>
+  </div>
+</div>
+
+<!-- ======================= 02 ======================= -->
+<div class="sec">
+  <div class="sec-head"><span class="n">02</span><h2>Поставка новинок: вскрываю мешок</h2></div>
+  <p class="lead">Тот самый сценарий, который вы искали. Формат распаковки с примеркой на себе: динамика, товар и лицо в одном ролике, при этом снимается там, где мешок и лежит.</p>
+
+  <div class="card big">
+    <div class="chead"><span class="id">Н1</span><span class="ttl">Приехал мешок. Открываем</span><span class="lab">разговорный + товар</span><span class="lab">по событию</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук · 0–3 сек · он же заголовок</span><q>Приехала новая поставка. Что внутри, я знаю только по накладной. Открываем и сразу меряю на себе.</q></div>
+      <div class="scr"><b>Текст на экране</b>новая поставка<br>открываю впервые</div>
+
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">мешок целый, ещё не вскрыт. Ты рядом, руки на упаковке. Камера уже пишет</span><span class="say">«Приехала новая поставка. Что внутри, я знаю только по накладной. Открываем и сразу меряю на себе.»</span></span></div>
+        <div class="b"><span class="t">3–10</span><span class="a"><span class="do">режешь упаковку, первый разворот. Не торопись, звук вскрытия работает сам по себе</span><span class="say">«По документам здесь [сколько] единиц, [сколько] моделей. Вживую я их ещё не видела.»</span></span></div>
+        <div class="b"><span class="t">10–24</span><span class="a"><span class="do">достаёшь вещи по одной, раскладываешь, держишь на весу</span><span class="say">«Так. Вот это [что], вот это [что]. Первое, что я смотрю, когда достаю партию: ровный ли шов, как легла строчка и нет ли перекоса по бокам. Это видно сразу, ещё до примерки.»</span></span></div>
+        <div class="b"><span class="t">24–42</span><span class="a"><span class="do">надеваешь прямо поверх того, что на тебе, или уходишь и возвращаешься уже в вещи. Поворот, шаг</span><span class="say">«А теперь на себе. Вот так она садится. Вот здесь [что нравится]. А вот здесь [что бы поправила] — и это я скажу на производство.»</span></span></div>
+        <div class="b"><span class="t">42–52</span><span class="a"><span class="do">вторая вещь, быстрее. Можно встык, без полного переодевания</span><span class="say">«И ещё одна. Эту ждала больше всех, потому что [почему].»</span></span></div>
+        <div class="b"><span class="t">52–60</span><span class="a"><span class="do">общий план разложенной партии</span><span class="say">«Вот что приехало. Какую показать подробнее? Пишите номер, сниму отдельно.»</span></span></div>
+      </div>
+
+      <div class="cap"><div class="k">Подпись под рилс · копировать</div><div class="txt">Приехала новая поставка. До этого момента я видела её только в накладной.
+
+Когда достаю партию, первым делом смотрю три вещи: ровный ли шов, как легла строчка и нет ли перекоса по бокам. Это видно сразу, ещё до того как надеть.
+
+Померила на себе прямо на месте, как есть. Одну вещь буду просить поправить, скажу об этом на производстве.
+
+Какую показать подробнее? Напишите номер, сниму отдельно.</div></div>
+
+      <div class="why"><span class="k">Зачем и как снимать</span>
+      <p>Распаковка работает на двух механиках сразу: любопытство (никто не знает, что внутри, включая вас) и товар в кадре. При этом ничего готовить не надо, мешок уже приехал.</p>
+      <p><b>Условие одно:</b> камера включается до вскрытия. Если снять уже разобранную партию, весь эффект пропадает.</p>
+      <p><b>Не прячьте недочёты.</b> Фраза «вот это я попрошу поправить» делает для доверия больше, чем идеальная картинка. Вы производитель, а не витрина, и видеть недостатки — ваша работа.</p>
+      <p><b>Финал с номером</b> даёт комментарии и заодно подсказывает, что снимать дальше. Каждая просьба показать модель — это готовая тема следующего ролика.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 03 ======================= -->
+<div class="sec">
+  <div class="sec-head"><span class="n">03</span><h2>Разговорные сценарии</h2></div>
+  <p class="lead">Восемь роликов, где вы говорите в камеру. Все построены на хуках из гайда: указан номер механики и номер шаблона, чтобы было видно, откуда взята конструкция. Снимаются телефоном, без подготовки, одним дублем.</p>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р1</span><span class="ttl">Ошибка, которая стоила мне партии</span><span class="lab">мех. 3 · шаблон 25</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Не повторяйте мою ошибку. Она стоила мне целой партии, и я до сих пор про неё помню.</q></div>
+      <div class="scr"><b>Текст на экране</b>ошибка ценой<br>в партию</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">крупно, без вступления</span><span class="say">«Не повторяйте мою ошибку. Она стоила мне целой партии, и я до сих пор про неё помню.»</span></span></div>
+        <div class="b"><span class="t">3–16</span><span class="a"><span class="do">спокойно, по фактам</span><span class="say">«[Что произошло: отправила партию без выборочной проверки / доверилась фото образца / не пересчитала размерный ряд]. Казалось, мелочь. Проверять было некогда.»</span></span></div>
+        <div class="b"><span class="t">16–32</span><span class="a"><span class="do">своя цифра обязательна</span><span class="say">«В итоге [сколько] единиц ушли не туда, куда должны были. В деньгах это [сумма]. И самое неприятное, что узнала я об этом не сама, а из отзывов.»</span></span></div>
+        <div class="b"><span class="t">32–44</span><span class="a"><span class="do">вывод без морали</span><span class="say">«Теперь правило простое: ни одна партия не уезжает, пока я не вскрою минимум [сколько] единиц наугад. Это полчаса, которые экономят месяц.»</span></span></div>
+        <div class="b"><span class="t">44–50</span><span class="a"><span class="do">вопрос</span><span class="say">«А у вас была ошибка, после которой появилось личное правило?»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Не повторяйте мою ошибку. Она стоила мне целой партии.
+
+[Что произошло]. Казалось мелочью, проверять было некогда. В итоге [сколько] единиц ушли не туда, а в деньгах это [сумма].
+
+Узнала я об этом не сама, а из отзывов. Вот это было обиднее всего.
+
+Теперь ни одна партия не уезжает, пока я не вскрою несколько единиц наугад. Полчаса, которые экономят месяц.
+
+А у вас была ошибка, после которой появилось личное правило?</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р2</span><span class="ttl">Больше никогда не запущу коллекцию без пробной партии</span><span class="lab">мех. 4 · шаблон 36</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Почему я больше никогда не буду запускать коллекцию без пробной партии. Даже если очень хочется успеть к сезону.</q></div>
+      <div class="scr"><b>Текст на экране</b>никогда больше<br>без пробной партии</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">в цеху или там, где лежит товар</span><span class="say">«Почему я больше никогда не буду запускать коллекцию без пробной партии. Даже если очень хочется успеть к сезону.»</span></span></div>
+        <div class="b"><span class="t">3–18</span><span class="a"><span class="do">можно показать вещь в руках</span><span class="say">«Соблазн понятный: пробная партия это лишние две недели и лишние деньги. Когда сроки горят, кажется логичным отшить сразу весь объём.»</span></span></div>
+        <div class="b"><span class="t">18–36</span><span class="a"><span class="do">конкретика из опыта</span><span class="say">«Только на пробной партии видно то, чего не видно на одном образце: как ткань ведёт себя в потоке, где сыпется край, какой размер садится не так, как задумано. На одной вещи это можно не заметить. На сотне — уже нельзя.»</span></span></div>
+        <div class="b"><span class="t">36–48</span><span class="a"><span class="do">вывод</span><span class="say">«Две недели пробной партии дешевле, чем переделка тысячи единиц. Я это выучила дорого.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Больше никогда не запускаю коллекцию без пробной партии. Даже когда сроки горят.
+
+Соблазн понятный: это лишние две недели и лишние деньги. Кажется логичным отшить сразу весь объём и успеть к сезону.
+
+Но на пробной партии видно то, чего не покажет один образец: как ткань ведёт себя в потоке, где сыпется край, какой размер садится не так, как задумывали. На одной вещи это можно не заметить. На сотне уже нельзя.
+
+Две недели пробной партии дешевле переделки тысячи единиц.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р3</span><span class="ttl">Три детали, по которым я сразу вижу плохой пошив</span><span class="lab">мех. 8 · шаблон 75</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Три детали, по которым я за пять секунд понимаю, что вещь сшита плохо. Проверьте на том, что на вас сейчас.</q></div>
+      <div class="scr"><b>Текст на экране</b>3 детали<br>5 секунд</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">вещь в руках, можно любая</span><span class="say">«Три детали, по которым я за пять секунд понимаю, что вещь сшита плохо. Проверьте прямо на том, что на вас сейчас.»</span></span></div>
+        <div class="b"><span class="t">3–14</span><span class="a"><span class="do">крупно боковой шов, растягиваешь</span><span class="say">«Первое: боковой шов. Он должен идти ровно вниз, а не закручиваться вокруг тела. Если закручивается, крой делали кое-как.»</span></span></div>
+        <div class="b"><span class="t">14–26</span><span class="a"><span class="do">крупно посадка рукава или плечевой шов</span><span class="say">«Второе: как вшит рукав. Складки у проймы, которых там быть не должно, — это не фасон, это посадка не сошлась.»</span></span></div>
+        <div class="b"><span class="t">26–40</span><span class="a"><span class="do">низ изделия, выворачиваешь край</span><span class="say">«Третье: обработка низа. Разверните и посмотрите изнанку. Если край просто обмётан на скорую руку, вещь поедет после третьей стирки.»</span></span></div>
+        <div class="b"><span class="t">40–48</span><span class="a"><span class="do">вопрос</span><span class="say">«Проверили? Пишите, что нашли у себя. Мне интересно, часто ли это попадается.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Три детали, по которым я за пять секунд понимаю, что вещь сшита плохо.
+
+Первая: боковой шов. Он должен идти ровно вниз, а не закручиваться вокруг тела. Закручивается — крой делали кое-как.
+
+Вторая: как вшит рукав. Складки у проймы, которых там быть не должно, это не фасон. Это посадка не сошлась.
+
+Третья: обработка низа. Разверните изнанку. Край просто обмётан на скорую руку — вещь поедет после третьей стирки.
+
+Проверьте на том, что на вас сейчас, и напишите, что нашли.</div></div>
+      <div class="why"><span class="k">Пометка</span><p>Один из самых охватных в наборе: проверить можно на себе прямо во время просмотра, а такое досматривают и пересылают. Никаких своих вещей для съёмки не нужно, подойдёт любая.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р4</span><span class="ttl">Не обязательно переплачивать за бренд</span><span class="lab">мех. 2 · шаблон 18</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Вы не обязаны переплачивать за бренд, чтобы вещь пережила сезон. Говорю как человек, который считает себестоимость.</q></div>
+      <div class="scr"><b>Текст на экране</b>цена ≠ качество</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">крупно, спокойно</span><span class="say">«Вы не обязаны переплачивать за бренд, чтобы вещь пережила сезон. Говорю как человек, который каждый месяц считает себестоимость.»</span></span></div>
+        <div class="b"><span class="t">3–18</span><span class="a"><span class="do">можно показать ценник или просто говорить</span><span class="say">«В цене вещи ткань и пошив занимают меньше, чем вы думаете. Остальное это логистика, комиссия площадки, реклама, возвраты и наценка. Поэтому две вещи с одинаковой себестоимостью могут стоить в три раза по-разному.»</span></span></div>
+        <div class="b"><span class="t">18–34</span><span class="a"><span class="do">вещь в руках</span><span class="say">«Что действительно стоит денег: плотность ткани, состав и то, как вещь собрана. Всё это можно проверить руками за минуту, не глядя на ярлык.»</span></span></div>
+        <div class="b"><span class="t">34–44</span><span class="a"><span class="do">вывод</span><span class="say">«Дорого не значит хорошо. И дёшево не значит плохо. Значит только то, что кто-то по-разному посчитал наценку.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Вы не обязаны переплачивать за бренд, чтобы вещь пережила сезон.
+
+В цене ткань и пошив занимают меньше, чем принято думать. Остальное это логистика, комиссия площадки, реклама, возвраты и наценка. Поэтому две вещи с одинаковой себестоимостью могут стоить втрое по-разному.
+
+Денег действительно стоят плотность ткани, состав и то, как вещь собрана. Это проверяется руками за минуту, без всякого ярлыка.
+
+Дорого не значит хорошо. Дёшево не значит плохо. Значит только то, что кто-то иначе посчитал наценку.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р5</span><span class="ttl">Мне было стыдно это показывать</span><span class="lab">мех. 7 · шаблон 64</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Мне было стыдно это показывать. Но вот как выглядит брак, который мы не отправили покупателям.</q></div>
+      <div class="scr"><b>Текст на экране</b>это вы<br>никогда не увидите</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">отбракованные вещи в кадре, ты рядом</span><span class="say">«Мне было стыдно это показывать. Но вот как выглядит брак, который мы не отправили покупателям.»</span></span></div>
+        <div class="b"><span class="t">3–18</span><span class="a"><span class="do">берёшь вещи по одной, показываешь дефект крупно</span><span class="say">«Вот здесь пошла строчка. Вот тут пятно от масла с машинки. А вот это просто не тот оттенок, рулон был из другой партии.»</span></span></div>
+        <div class="b"><span class="t">18–34</span><span class="a"><span class="do">общий план отбраковки</span><span class="say">«С каждой партии отбраковывается [сколько] процентов. Это нормально, так у всех. Ненормально, когда этого не делают и отправляют как есть, а покупательница потом пишет отзыв и остаётся виноватой сама.»</span></span></div>
+        <div class="b"><span class="t">34–46</span><span class="a"><span class="do">честный финал</span><span class="say">«Показываю, потому что это и есть та часть работы, за которую вы платите, когда берёте у производителя, а не у перекупа.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Мне было стыдно это показывать. Но это та часть работы, которую вы не видите никогда.
+
+Вот брак, который не уехал к покупателям. Где-то пошла строчка, где-то пятно от масла с машинки, где-то просто не тот оттенок, потому что рулон был из другой партии.
+
+С каждой партии отбраковывается [сколько] процентов. Это нормально, так у всех. Ненормально, когда отбраковку не делают и отправляют как есть.
+
+Вы за это и платите, когда берёте у производителя.</div></div>
+      <div class="why"><span class="k">Пометка</span><p>Показывать свой брак не принято, поэтому это и работает. Условие одно: говорить спокойно, как о рабочем процессе, а не оправдываться. Отбраковка — это не провал, это доказательство контроля.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р6</span><span class="ttl">Продать в минус сейчас или держать до весны</span><span class="lab">мех. 9 · шаблон 84</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Что бы вы сделали на моём месте: продать партию почти в ноль сейчас или держать её до весны?</q></div>
+      <div class="scr"><b>Текст на экране</b>в ноль сейчас<br>или ждать весну</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">у стеллажа с товаром</span><span class="say">«Что бы вы сделали на моём месте: продать партию почти в ноль сейчас или держать её до весны?»</span></span></div>
+        <div class="b"><span class="t">3–18</span><span class="a"><span class="do">показываешь вещи, о которых речь</span><span class="say">«Вот эта часть коллекции не успела в сезон. Продать сейчас можно, но со скидкой, которая съест почти всю маржу. Останется [сколько] процентов, то есть почти ничего.»</span></span></div>
+        <div class="b"><span class="t">18–34</span><span class="a"><span class="do">вторая сторона</span><span class="say">«Держать до весны тоже не бесплатно. Хранение стоит денег каждый месяц, деньги в товаре не работают, а через полгода вещь может просто перестать быть актуальной.»</span></span></div>
+        <div class="b"><span class="t">34–46</span><span class="a"><span class="do">честно про себя</span><span class="say">«Я склоняюсь к [какому варианту], но не уверена. Поэтому и спрашиваю.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Что бы вы сделали на моём месте: продать партию почти в ноль сейчас или держать до весны?
+
+Продать сейчас — со скидкой, которая съест почти всю маржу. Останется [сколько] процентов, то есть почти ничего.
+
+Держать — тоже не бесплатно. Хранение стоит денег каждый месяц, деньги в товаре не работают, а к весне вещь может перестать быть актуальной.
+
+Я склоняюсь к [варианту], но не уверена. Поэтому и спрашиваю.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р7</span><span class="ttl">Четыре вопроса перед покупкой на маркетплейсе</span><span class="lab">мех. 6 · шаблон 55</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Четыре вопроса, которые стоит задать себе до того, как нажать «купить» на маркетплейсе. Сохраните, пригодится.</q></div>
+      <div class="scr"><b>Текст на экране</b>4 вопроса<br>до кнопки «купить»</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">с телефоном в руках, карточка на экране</span><span class="say">«Четыре вопроса, которые стоит задать себе до того, как нажать купить. Сохраните, пригодится.»</span></span></div>
+        <div class="b"><span class="t">3–13</span><span class="a"><span class="do">показываешь состав в карточке</span><span class="say">«Первый: что в составе и в каких долях. Не «вискоза», а сколько именно процентов. От этого зависит, сядет вещь после стирки или нет.»</span></span></div>
+        <div class="b"><span class="t">13–24</span><span class="a"><span class="do">листаешь к замерам</span><span class="say">«Второй: есть ли замеры по каждому размеру, а не общая таблица. Если замеров нет, продавец сам не знает, что у него сшито.»</span></span></div>
+        <div class="b"><span class="t">24–36</span><span class="a"><span class="do">отзывы с фото</span><span class="say">«Третий: есть ли отзывы с живыми фото. Не студийными, а снятыми дома при обычном свете. Цвет вы увидите только там.»</span></span></div>
+        <div class="b"><span class="t">36–48</span><span class="a"><span class="do">финальный</span><span class="say">«И четвёртый: сколько у продавца моделей всего. Если их тысячи и все разные — он не производит, он перепродаёт. Это не плохо, просто знайте, у кого берёте.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Четыре вопроса до того, как нажать «купить».
+
+1. Что в составе и в каких долях. Не «вискоза», а сколько процентов. От этого зависит, сядет вещь после стирки или нет.
+
+2. Есть ли замеры по каждому размеру, а не общая таблица. Нет замеров — продавец сам не знает, что у него сшито.
+
+3. Есть ли отзывы с живыми фото. Не студийными, а снятыми дома при обычном свете. Настоящий цвет виден только там.
+
+4. Сколько у продавца моделей всего. Тысячи и все разные — он не производит, а перепродаёт. Это не плохо, просто знайте, у кого берёте.
+
+Сохраните, чтобы не потерять.</div></div>
+      <div class="why"><span class="k">Пометка</span><p>Самый сохраняемый из набора, а сохранения — сильный сигнал алгоритму. Снимается за десять минут: нужны только телефон и открытая карточка на экране.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Р8</span><span class="ttl">Кому наши вещи не подойдут</span><span class="lab">мех. 10 · шаблон 92</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Хук</span><q>Кому наши вещи точно подойдут, а кому лучше не брать. Говорю честно, потому что возвраты дороже продажи.</q></div>
+      <div class="scr"><b>Текст на экране</b>кому не брать</div>
+      <div class="beats">
+        <div class="b"><span class="t">0–3</span><span class="a"><span class="do">вещь в руках или на тебе</span><span class="say">«Кому наши вещи точно подойдут, а кому лучше не брать. Говорю честно, потому что возврат мне обходится дороже, чем несостоявшаяся продажа.»</span></span></div>
+        <div class="b"><span class="t">3–20</span><span class="a"><span class="do">показываешь на вещи, о чём речь</span><span class="say">«Подойдут, если вы [кому: носите вещи не один сезон, цените посадку, берёте базу и носите её часто]. Мы шьём именно под это.»</span></span></div>
+        <div class="b"><span class="t">20–38</span><span class="a"><span class="do">честная часть, ради которой ролик</span><span class="say">«Не берите, если вам нужно [что: вещь на один выход, яркий тренд на месяц, самая низкая цена на площадке]. Это нормальные запросы, просто не наши. Есть продавцы, у которых это получается лучше.»</span></span></div>
+        <div class="b"><span class="t">38–48</span><span class="a"><span class="do">финал</span><span class="say">«Мне правда выгоднее, чтобы вы не купили, чем чтобы купили и вернули.»</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Кому наши вещи подойдут, а кому лучше не брать.
+
+Подойдут, если вы носите вещи не один сезон, цените посадку и берёте базу, которую надеваете часто. Мы шьём именно под это.
+
+Не берите, если нужна вещь на один выход, яркий тренд на месяц или самая низкая цена на площадке. Это нормальные запросы, просто не наши. Есть продавцы, у которых это получается лучше.
+
+Мне правда выгоднее, чтобы вы не купили, чем чтобы купили и вернули.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 04 ======================= -->
+<div class="sec">
+  <div class="sec-head"><span class="n">04</span><h2>Фоновые под музыку</h2></div>
+  <p class="lead">Шесть роликов без единого слова. Кадры вы снимаете по ходу дела, текст ставится на экран, сверху накладывается музыка. Это самый дешёвый формат из существующих: говорить не надо, монтаж собирается из того, что уже снято.</p>
+
+  <div class="note">
+    <span class="k">Три правила для всех фоновых</span>
+    <p><b>Текст на экране — это и есть хук.</b> Первая надпись появляется в первую секунду, держится 2–3 секунды и читается за один взгляд: не больше шести слов.</p>
+    <p><b>Музыка без вокала на русском.</b> Слова в песне конкурируют с текстом на экране, и зритель перестаёт читать. Инструментал или иностранный вокал.</p>
+    <p><b>Кадры по 1–2 секунды.</b> Длинный статичный кадр без речи роняет удержание мгновенно. Лучше десять коротких, чем три длинных.</p>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф1</span><span class="ttl">Что происходит с вещью за неделю в цеху</span><span class="lab">мех. 1 · шаблон 8</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Что происходит с вещью за 7 дней в цеху</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">рулон на столе → раскладка лекал → раскрой → стопка деталей → строчка крупно → сборка → утюг → бирка → упаковка → коробка</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">По кадрам, короткими подписями: «День 1. Рулон» · «День 2. Лекала» · «День 3. Раскрой» · «День 4. Пошив» · «День 5. Сборка» · «День 6. ВТО» · «День 7. Упаковка»</span></span></div>
+        <div class="b"><span class="t">финал</span><span class="a"><span class="say">«И только теперь она едет к вам»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">ритмичная, с нарастанием. Монтаж в такт: каждый новый день на удар</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Семь дней от рулона до коробки.
+
+Между тканью и вашей вещью помещается целая неделя работы: лекала, раскрой, пошив, сборка, отпаривание, упаковка. И это если всё идёт по плану.
+
+Сняла по кусочку в каждый из дней.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф2</span><span class="ttl">До и после: эскиз и готовая вещь</span><span class="lab">мех. 5 · шаблон 44</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Так она выглядела на бумаге</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">эскиз или лекало на столе, рука ведёт по линии → ткань → примерка образца → готовая вещь в движении, шаг и поворот</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">«Так она выглядела на бумаге» → «Так в первой примерке» → «Так после правок» → «А так она у вас»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">спокойная, с одним подъёмом на последнем кадре</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Путь от бумаги до вещи.
+
+Между первым эскизом и тем, что вы видите в карточке, обычно [сколько] правок. Что-то меняется в длине, что-то в посадке, что-то приходится переделывать целиком.
+
+Красивого в этом процессе мало. Зато честно.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф3</span><span class="ttl">Сколько рук трогает вашу вещь</span><span class="lab">мех. 6 · шаблон 56</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Сколько рук трогает вашу вещь до вас</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">только руки, крупно: разворачивают рулон, ведут мелом, режут, строчат, обрезают нитку, отпаривают, пришивают бирку, складывают, пакуют, заклеивают короб</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">Счётчик в углу кадра: «1» «2» «3» … и так до последнего. Финальная надпись: «И только одиннадцатые руки — ваши»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">ровная, без резких переходов. Счёт делает динамику сам</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Посчитала, сколько рук трогает вещь, прежде чем её коснётесь вы.
+
+Получилось [сколько]. Раскройщик, швея, контролёр, упаковщик, склад, доставка, пункт выдачи.
+
+Каждые из этих рук могут что-то испортить. И каждые могут сделать хорошо.</div></div>
+      <div class="why"><span class="k">Пометка</span><p>Снимается вообще без плана: заходите в цех и снимаете руки, одна операция — один кадр. Счётчик добавляется при монтаже.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф4</span><span class="ttl">Сначала это выглядит странно</span><span class="lab">мех. 1 · шаблон 6</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Сначала это выглядит странно. Досмотрите</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">гора раскроенных деталей, в которой ничего не узнаётся → детали раскладываются по стопкам → первая строчка → силуэт начинает угадываться → готовая вещь на вешалке или на фигуре</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">«Сначала это выглядит странно. Досмотрите» → в середине «Угадали, что это?» → финал «Вот что из этого получается»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">интригующая, с разрядкой на финальном кадре</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Угадали по деталям, что это будет?
+
+В раскроенном виде вещь не узнаёт почти никто, даже те, кто носит её каждый день. Вот эта куча кусков ткани через два дня станет [что].
+
+Пишите, угадали или нет.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф5</span><span class="ttl">Что я сказала бы себе в начале пути</span><span class="lab">мех. 7 · шаблон 69</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Что бы я сказала себе пять лет назад</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">тихие планы цеха без людей: утренний свет, пустые столы, машинки, рулоны, твои руки на ткани. Можно ты со спины</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">По одной фразе на кадр: «Считай юнит до того, как влюбишься в модель» · «Не верь фотографии образца» · «Пробная партия дешевле переделки» · «Склад — это не твой склад» · «Люди покажут себя в плохой месяц, а не в хороший»</span></span></div>
+        <div class="b"><span class="t">финал</span><span class="a"><span class="say">«Пять лет. Ничего из этого я тогда не знала»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">спокойная, почти без ритма. Кадры длиннее обычного, по 3 секунды: здесь читают, а не смотрят</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Что бы я сказала себе пять лет назад, когда всё начиналось.
+
+Считай юнит до того, как влюбишься в модель. Не верь фотографии образца. Пробная партия дешевле переделки. Чужой склад — это не твой склад. И люди показывают себя в плохой месяц, а не в хороший.
+
+Ничего из этого я тогда не знала. Каждый пункт стоил денег.
+
+А что бы вы сказали себе в начале?</div></div>
+      <div class="why"><span class="k">Пометка</span><p>Единственное исключение из правила про короткие кадры: здесь зритель читает, и ему нужно время. Три секунды на фразу, не меньше.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chead"><span class="id">Ф6</span><span class="ttl">Один день без монтажа красоты</span><span class="lab">мех. 5 · шаблон 46</span></div>
+    <div class="cbody">
+      <div class="hook"><span class="k">Первая надпись на экране</span><q>Один день. Без красивой упаковки</q></div>
+      <div class="beats">
+        <div class="b"><span class="t">кадры</span><span class="a"><span class="do">всё подряд за день: машина утром, коробки, экран с цифрами, чай, разговор без звука, снова коробки, вечер, пустой цех. Ничего не выставляешь, снимаешь как есть</span></span></div>
+        <div class="b"><span class="t">текст</span><span class="a"><span class="say">Только время в углу: «7:40» · «9:15» · «12:00» · «15:30» · «19:50». Финал: «И завтра так же»</span></span></div>
+        <div class="b"><span class="t">музыка</span><span class="a"><span class="do">нейтральная, фоновая. Она не должна делать день красивее, чем он был</span></span></div>
+      </div>
+      <div class="cap"><div class="k">Подпись · копировать</div><div class="txt">Один день без красивой упаковки.
+
+Снимала по кадру, когда вспоминала. Ничего не выставляла и не переснимала, поэтому местами криво.
+
+Так выглядит производство одежды изнутри, если убрать монтаж.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 05 ======================= -->
+<div class="sec">
+  <div class="sec-head"><span class="n">05</span><h2>Шпаргалка: механики и чек-лист</h2></div>
+  <p class="lead">Десять механик из гайда, чтобы дальше собирать хуки самостоятельно. Рядом указано, для какой задачи каждая подходит именно вам.</p>
+
+  <div class="mech">
+    <div><b>1.</b> Любопытство — когда есть что показать, но не сразу</div>
+    <div><b>2.</b> Боль и узнавание — для покупательниц</div>
+    <div><b>3.</b> Ошибки — лучше всего сохраняют</div>
+    <div><b>4.</b> Мифы и провокация — для селлеров</div>
+    <div><b>5.</b> Результат — до и после</div>
+    <div><b>6.</b> Цифры и списки — самые сохраняемые</div>
+    <div><b>7.</b> Личная история — ваш сильнейший столб</div>
+    <div><b>8.</b> Экспертность — то, чего нет у перекупов</div>
+    <div><b>9.</b> Диалог — даёт комментарии</div>
+    <div><b>10.</b> Продажа без «купи» — товар без давления</div>
+  </div>
+
+  <div class="note g">
+    <span class="k">Формула из гайда, по которой собран каждый сценарий</span>
+    <p><b>ХУК → ИНТРИГА → ПОЛЬЗА или ЭМОЦИЯ → ВЫВОД → ДЕЙСТВИЕ.</b> Хук выигрывает первые секунды, но охват появляется только тогда, когда после сильного начала зритель получает узнавание, пользу или неожиданный вывод и досматривает.</p>
+  </div>
+
+  <h3 style="font-size:11pt;margin:6mm 0 2.5mm">Перед публикацией, десять пунктов</h3>
+  <ol class="chk">
+    <li>Первые слова понятны без контекста?</li>
+    <li>В хуке есть конкретика, конфликт, ставка или узнаваемая ситуация?</li>
+    <li>Обещание соответствует содержанию ролика?</li>
+    <li>В кадре или на экране что-то меняется в первые одну-две секунды?</li>
+    <li>После хука сразу начинается смысл, а не приветствие и предыстория?</li>
+    <li>Зритель понимает, зачем досматривать?</li>
+    <li>В ролике одна главная мысль, а не пять разных?</li>
+    <li>Финал даёт вывод, результат или эмоциональную развязку?</li>
+    <li>Призыв к действию связан с роликом?</li>
+    <li>Готовы протестировать другой хук, если удержание слабое?</li>
+  </ol>
+
+  <div class="note">
+    <span class="k">Своё, поверх гайда</span>
+    <p><b>Субтитры на всех роликах.</b> Больше половины смотрят без звука, а у вас в разговорных весь смысл в словах.</p>
+    <p><b>Своя цифра в каждом деловом ролике.</b> Без числа разговор про бизнес превращается в жалобу. С числом — в позицию практика.</p>
+    <p><b>Один дубль, без макияжа.</b> Это уже проверено на сентябрьском наборе и менять незачем.</p>
+    <p><b>Тестируйте по три хука на тему.</b> Гайд советует три-пять. У вас на это есть материал: один и тот же ролик можно открыть болью, цифрой или провокацией.</p>
+  </div>
+
+  <div class="foot">
+    <span>Сценарии октября · @alenka_rafaelka · 23.09.2026 · хуки по гайду «100 хуков для Reels», dasha_cher</span>
+  </div>
+</div>
