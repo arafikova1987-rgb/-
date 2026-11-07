@@ -1,3 +1,7 @@
 video-tools/.venv/
 video-tools/node_modules/
 video-tools/test/
+video-tools/references/raw/
+video-tools/references/frames/
+video-tools/references/analysis/
+video-tools/references/transcribe.py
